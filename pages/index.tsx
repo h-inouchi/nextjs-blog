@@ -5,6 +5,7 @@ import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
+import PostList from 'src/components/posts/PostList'
 
 export default function Home({
   allPostsData
@@ -25,7 +26,8 @@ export default function Home({
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
+        <PostList posts={allPostsData} />
+        {/* <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
@@ -37,7 +39,7 @@ export default function Home({
               </small>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </section>
     </Layout>
   )
