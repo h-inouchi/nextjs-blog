@@ -35,9 +35,9 @@ const PostListItem: React.FC<Props> = ({
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              {contentHtml}
-            </Typography> */}
+            <Typography variant="body2" color="textSecondary" component="p">
+              {date}
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Link>
