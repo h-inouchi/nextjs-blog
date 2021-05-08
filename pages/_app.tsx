@@ -1,18 +1,25 @@
 import '../styles/global.css'
 import { useEffect } from 'react';
 import Head from 'next/head';
-import type { AppProps /*, AppContext */ } from 'next/app';
+import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Theme from 'src/components/Theme';
 import NavBar from 'src/components/layouts/NavBar';
 
+const cache = new InMemoryCache();
+import fetch from 'cross-fetch';
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: 'https://meerkat-312510.an.r.appspot.com/graphql/',
+    fetch
+  }),
+  cache: new InMemoryCache(),
+});
 
-export default function MyApp(props: AppProps) {
-  
-  const { Component, pageProps } = props;
-
+function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -30,14 +37,18 @@ export default function MyApp(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider theme={Theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <NavBar />
-        <Container maxWidth="lg">
-          <Component {...pageProps} />
-        </Container>
-      </ThemeProvider>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={Theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <NavBar />
+          <Container maxWidth="lg">
+            <Component {...pageProps} />
+          </Container>
+        </ThemeProvider>
+      </ApolloProvider>
     </>
   );
 }
+
+export default MyApp;

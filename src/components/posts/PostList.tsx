@@ -1,41 +1,32 @@
-import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import PostType from 'src/types/Post';
 import PostListItem from 'src/components/posts/PostListItem';
+import { useQuery } from '@apollo/client';
+import { MEERKATS_QUERY, MeerkatsData } from '../../../lib/meerkats';
+import { NextPage } from 'next';
+interface PostListProps {}
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  })
-);
+const PostList: NextPage<PostListProps> = () => {
+  const { loading, error, data } = useQuery<MeerkatsData>(MEERKATS_QUERY);
 
-export type Props = {
-  posts: PostType[];
-};
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
-const PostList: React.FC<Props> = ({ posts }) => {
-  const classes = useStyles();
+  const { allMeerkats } = data;
+
+  if (!allMeerkats) return null;
 
   return (
-    <div className={classes.root}>
+    <div>
       <Grid container spacing={2}>
-        {posts.map((post) => {
-          const href = `/posts/${post.id}`;
+        {allMeerkats.map((meerkat) => {
+          const href = `/posts/${meerkat.id}`;
 
           return (
-            <Grid key={post.id} item xs={12} sm={6} md={4} lg={3}>
+            <Grid key={meerkat.id} item xs={12} sm={6} md={4} lg={3}>
               {/* <Paper className={classes.paper}>xs</Paper> */}
               <PostListItem
-                {...post}
+                {...meerkat}
               />
             </Grid>
           );

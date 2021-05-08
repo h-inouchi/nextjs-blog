@@ -6,7 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import PostType from 'src/types/Post';
+import Meerkat from 'src/types/Meerkat';
 
 const useStyles = makeStyles({
   root: {
@@ -17,12 +17,13 @@ const useStyles = makeStyles({
   },
 });
 
-type Props = PostType;
+type Props = Meerkat;
 
 const PostListItem: React.FC<Props> = ({
   id,
-  title,
-  date,
+  image,
+  description,
+  photoDate,
 }) => {
   const classes = useStyles();
 
@@ -30,13 +31,13 @@ const PostListItem: React.FC<Props> = ({
     <Card className={classes.root}>
       <Link href={`/posts/${id}`}>
         <CardActionArea>
-          <CardMedia className={classes.media} image="/images/profile.jpg" title={title} />
+          <CardMedia className={classes.media} image={image} title={description} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {title}
+              {description}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {date}
+              {photoDate}
             </Typography>
           </CardContent>
         </CardActionArea>
