@@ -12,13 +12,7 @@ const Home: NextPage<HomeProps> = () => {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>ミーアキャットと２人暮らしはじめました。</p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <PostList />
-      </section>
+      <PostList />
     </Layout>
   )
 }

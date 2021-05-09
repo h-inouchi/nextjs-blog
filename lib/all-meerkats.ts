@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 import Meerkat from '../src/types/Meerkat';
 
-export const MEERKATS_QUERY = gql`
-  query allMeerkats{
+export const ALL_MEERKATS_QUERY = gql`
+  query randomMeerkat{
     allMeerkats{
       id
       image
@@ -12,6 +12,7 @@ export const MEERKATS_QUERY = gql`
   }
 `;
 
-export interface MeerkatsData {
+export interface AllMeerkatsData {
   allMeerkats: Meerkat[];
 }
+
