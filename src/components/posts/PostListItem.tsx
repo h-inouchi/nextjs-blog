@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -13,7 +12,7 @@ const useStyles = makeStyles({
     // maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: "70vh",
   },
 });
 
@@ -29,19 +28,17 @@ const PostListItem: React.FC<Props> = ({
 
   return (
     <Card className={classes.root}>
-      <Link href={`/posts/${id}`}>
-        <CardActionArea>
-          <CardMedia className={classes.media} image={image} title={description} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {description}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {photoDate}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Link>
+      <CardActionArea>
+        <CardMedia className={classes.media} image={image} title={description} />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {description}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {photoDate}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 };

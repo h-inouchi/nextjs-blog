@@ -9,13 +9,8 @@ import Container from '@material-ui/core/Container';
 import Theme from 'src/components/Theme';
 import NavBar from 'src/components/layouts/NavBar';
 
-const cache = new InMemoryCache();
-import fetch from 'cross-fetch';
 const client = new ApolloClient({
-  link: new HttpLink({
-    uri: 'https://meerkat-312510.an.r.appspot.com/graphql/',
-    fetch
-  }),
+  uri: 'https://meerkat-312510.an.r.appspot.com/graphql/',
   cache: new InMemoryCache(),
 });
 
@@ -30,13 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Head>
-        <title>My page</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
       <ApolloProvider client={client}>
         <ThemeProvider theme={Theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
