@@ -16,8 +16,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
-import PhotoIcon from '@material-ui/icons/Photo';
-import MovieIcon from '@material-ui/icons/Movie';
 
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -71,16 +69,6 @@ const MENU_LIST = [
     title: 'Home',
     icon: <HomeIcon />,
     href: '/',
-  },
-  {
-    title: 'Photo',
-    icon: <PhotoIcon />,
-    href: '/photo',
-  },
-  {
-    title: 'Movie',
-    icon: <MovieIcon />,
-    href: '/movie',
   },
 ];
 
