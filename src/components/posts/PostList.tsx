@@ -16,13 +16,13 @@ const PostList: NextPage<PostListProps> = () => {
   if (!randomMeerkat) return null;
 
   return (
-    <div>
-      <Grid key={randomMeerkat.id} item xs={12} sm={12} md={12} lg={12}>
+    <Grid container alignItems="center" justify="center">
+      <Grid key={randomMeerkat.id} item xs={12} sm={10} md={4} lg={4}>
         <PostListItem
           {...randomMeerkat}
         />
       </Grid>
-    </div>
+    </Grid>
   );
 };
 

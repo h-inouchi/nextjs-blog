@@ -28,17 +28,7 @@ const PostListItem: React.FC<Props> = ({
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia className={classes.media} image={image} title={description} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {description}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {photoDate}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia className={classes.media} image={image} title={description} />
     </Card>
   );
 };
