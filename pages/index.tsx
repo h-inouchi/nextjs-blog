@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
 import PostList from 'src/components/posts/PostList'
 
 interface HomeProps {}
