@@ -6,6 +6,7 @@ import { gql } from "@apollo/client";
 import client from "../api/apollo-client";
 import Layout, { siteTitle } from 'components/layout'
 import { getAllMeerkatIds } from 'lib/all-meerkats'
+import utilStyles from '../../styles/utils.module.css'
 
 function Meerkat({meerkat, next}) {
   const router = useRouter();
@@ -21,7 +22,7 @@ function Meerkat({meerkat, next}) {
       </Head>
       <Grid container alignItems="center" justify="center">
         <Grid key={meerkat.id} item xs={12} sm={10} md={4} lg={4}>
-          <h4>
+          <h4 className={utilStyles.headingSm}>
             {
               new Date(meerkat.photoDate).getFullYear() + '/' +
               new Date(meerkat.photoDate).getMonth() + '/' +
