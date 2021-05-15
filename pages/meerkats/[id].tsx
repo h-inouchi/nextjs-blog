@@ -25,8 +25,8 @@ function Meerkat({meerkat, next}) {
           <h4 className={utilStyles.headingSm}>
             {
               new Date(meerkat.photoDate).getFullYear() + '/' +
-              new Date(meerkat.photoDate).getMonth() + '/' +
-              new Date(meerkat.photoDate).getDate()
+                ("0" + (new Date(meerkat.photoDate).getMonth() + 1)).slice(-2) + '/' +
+                ("0" + new Date(meerkat.photoDate).getDate()).slice(-2)
             }
           </h4>
           { console.log(meerkat.photoDate) }
