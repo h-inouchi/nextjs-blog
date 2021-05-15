@@ -4,6 +4,7 @@ import PostListItem from 'src/components/posts/PostListItem';
 import { useQuery } from '@apollo/client';
 import { RANDOM_MEERKAT_QUERY, RandomMeerkatData } from '../../../lib/random-meerkat';
 import { NextPage } from 'next';
+
 interface PostListProps {}
 
 const PostList: NextPage<PostListProps> = () => {
@@ -18,9 +19,11 @@ const PostList: NextPage<PostListProps> = () => {
   return (
     <Grid container alignItems="center" justify="center">
       <Grid key={randomMeerkat.id} item xs={12} sm={10} md={4} lg={4}>
-        <PostListItem
-          {...randomMeerkat}
-        />
+        <a href={`/meerkats/${randomMeerkat.id}`}>
+          <PostListItem
+            {...randomMeerkat}
+          />
+        </a>
       </Grid>
     </Grid>
   );
