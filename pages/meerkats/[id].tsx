@@ -7,7 +7,7 @@ import client from "../api/apollo-client";
 import Layout, { siteTitle } from 'components/layout'
 import { getAllMeerkatIds } from 'lib/all-meerkats'
 
-function Meerkat({meerkat}) {
+function Meerkat({meerkat, next}) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -21,9 +21,19 @@ function Meerkat({meerkat}) {
       </Head>
       <Grid container alignItems="center" justify="center">
         <Grid key={meerkat.id} item xs={12} sm={10} md={4} lg={4}>
-          <PostListItem
-            {...meerkat}
-          />
+          <h4>
+            {
+              new Date(meerkat.photoDate).getFullYear() + '/' +
+              new Date(meerkat.photoDate).getMonth() + '/' +
+              new Date(meerkat.photoDate).getDate()
+            }
+          </h4>
+          { console.log(meerkat.photoDate) }
+          <a href={`/meerkats/${next.id}`}>
+            <PostListItem
+              {...meerkat}
+            />
+          </a>
         </Grid>
       </Grid>
     </Layout>
@@ -46,24 +56,26 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps({ params }) {
-  const MEERKAT_DATA = gql`
+  const MEERKAT_QUERY = gql`
   query ($id: String!){
-    meerkatById(id: $id){
+    meerkatPlusNextById(id: $id){
       id
       image
+      photoDate
     }
   }
   `;
 
   const id = params.id;
   const { data } = await client.query({
-    query: MEERKAT_DATA,
+    query: MEERKAT_QUERY,
     variables: { id }
   })
 
   return{
     props: {
-      meerkat: data.meerkatById,
+      meerkat: data.meerkatPlusNextById[0],
+      next: data.meerkatPlusNextById[1],
     },
   };
 }
