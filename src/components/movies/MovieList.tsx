@@ -1,28 +1,27 @@
 import Grid from '@material-ui/core/Grid';
-import PostListItem from 'src/components/posts/PostListItem';
+import MovieListItem from 'src/components/movies/MovieListItem';
 import { useQuery } from '@apollo/client';
-import { RANDOM_MEERKAT_QUERY, RandomMeerkatData } from '../../../lib/random-meerkat';
+import { RANDOM_MOVIE_QUERY, RandomMovieData } from '../../../lib/random-meerkat';
 import { NextPage } from 'next';
 
 interface MovieListProps {}
 
 const MovieList: NextPage<MovieListProps> = () => {
-  const { loading, error, data } = useQuery<RandomMeerkatData>(RANDOM_MEERKAT_QUERY);
+  const { loading, error, data } = useQuery<RandomMovieData>(RANDOM_MOVIE_QUERY);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
-  const { randomMeerkat } = data;
-  if (!randomMeerkat) return null;
+  const { randomMovie } = data;
+  if (!randomMovie) return null;
 
   return (
     <Grid container alignItems="center" justify="center">
-      <Grid key={randomMeerkat.id} item xs={12} sm={10} md={4} lg={4}>
-        <a href={`/meerkats/${randomMeerkat.id}`}>
-          <PostListItem
-            {...randomMeerkat}
-          />
-        </a>
+      <Grid key={randomMovie.id} item xs={12} sm={10} md={4} lg={4}>
+        <MovieListItem
+          {...randomMovie}
+        />
+        <a href={`/movies/${randomMovie.id}`}>詳細ページへ</a>
       </Grid>
     </Grid>
   );
