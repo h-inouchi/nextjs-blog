@@ -2,6 +2,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/client';
 import { ALL_MEERKATS_QUERY, AllMeerkatsData } from '../../lib/all-meerkats';
@@ -53,7 +54,10 @@ function MeerkatLinks(props) {
 
   return (
     <Typography className={classes.root}>
-      写真リンク
+      <InputBase
+        defaultValue="写真リンク"
+        inputProps={{ 'aria-label': 'naked' }}
+      />
       {list}
     </Typography>
   );

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/client';
@@ -53,7 +54,10 @@ function MovieLinks(props) {
 
   return (
     <Typography className={classes.root}>
-      動画リンク
+      <InputBase
+        defaultValue="動画リンク"
+        inputProps={{ 'aria-label': 'naked' }}
+      />
       {list}
     </Typography>
   );
