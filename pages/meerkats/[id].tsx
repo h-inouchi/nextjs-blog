@@ -7,6 +7,7 @@ import client from "../api/apollo-client";
 import Layout, { siteTitle } from 'components/layout'
 import { getAllMeerkatIds } from 'lib/all-meerkats'
 import utilStyles from '../../styles/utils.module.css'
+import MeerkatLinks from 'src/components/MeerkatLinks'
 
 function Meerkat({meerkat, next}) {
   const router = useRouter();
@@ -37,6 +38,7 @@ function Meerkat({meerkat, next}) {
           </a>
         </Grid>
       </Grid>
+      <MeerkatLinks disableLinkId={meerkat.id} />
     </Layout>
   );
 }

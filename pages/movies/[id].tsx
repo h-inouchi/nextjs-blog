@@ -7,6 +7,7 @@ import client from "../api/apollo-client";
 import Layout, { siteTitle } from 'components/layout'
 import { getAllMovieIds } from 'lib/all-meerkats'
 import utilStyles from '../../styles/utils.module.css'
+import MovieLinks from 'src/components/MovieLinks'
 
 function Movie({movie, next}) {
   const router = useRouter();
@@ -37,6 +38,7 @@ function Movie({movie, next}) {
           </a>
         </Grid>
       </Grid>
+      <MovieLinks disableLinkId={movie.id} />
     </Layout>
   );
 }
