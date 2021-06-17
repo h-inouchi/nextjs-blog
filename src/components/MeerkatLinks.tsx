@@ -21,12 +21,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 MeerkatLinks.propTypes = {
-  disableLinkId: PropTypes.number
+  disableLinkId: PropTypes.string
 }
 
 function MeerkatLinks(props) {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
   const { loading, error, data } = useQuery<AllMeerkatsData>(ALL_MEERKATS_QUERY);
 
   if (loading) return <p>Loading...</p>;
@@ -46,7 +45,7 @@ function MeerkatLinks(props) {
       continue;
     }
     list.push(
-      <Link key={`meerkats${allMeerkats[i].id}`} href={`/meerkats/${allMeerkats[i].id}`} onClick={preventDefault}>
+      <Link key={`meerkats${allMeerkats[i].id}`} href={`/meerkats/${allMeerkats[i].id}`}>
         {allMeerkats[i].id}
       </Link>
     );

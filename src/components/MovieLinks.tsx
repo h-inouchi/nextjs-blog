@@ -21,12 +21,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 MovieLinks.propTypes = {
-  disableLinkId: PropTypes.number
+  disableLinkId: PropTypes.string
 }
 
 function MovieLinks(props) {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
   const { loading, error, data } = useQuery<AllMoviesData>(ALL_MOVIES_QUERY);
 
   if (loading) return <p>Loading...</p>;
@@ -46,7 +45,7 @@ function MovieLinks(props) {
       continue;
     }
     list.push(
-      <Link key={`movies${allMovies[i].id}`} href={`/movies/${allMovies[i].id}`} onClick={preventDefault}>
+      <Link key={`movies${allMovies[i].id}`} href={`/movies/${allMovies[i].id}`}>
         {allMovies[i].id}
       </Link>
     );
